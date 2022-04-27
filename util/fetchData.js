@@ -6,10 +6,10 @@ const fetchData = async () => {
     if (!localStorage.getItem(DATA_TAG)) {
       const url = "https://raw.githubusercontent.com/polarity-cf/moov-core/master/dataset_split.json";
       let request = await axios.get(url);
-      localStorage.setItem(DATA_TAG, JSON.parse(request.data));
+      // console.log(request.data.splice(0, 20));
+      localStorage.setItem(DATA_TAG, JSON.stringify(request.data));
     }
-
-    return localStorage.getItem(DATA_TAG);
+    return JSON.parse(localStorage.getItem(DATA_TAG));
   } catch (err) {
     console.log(err)
   }
